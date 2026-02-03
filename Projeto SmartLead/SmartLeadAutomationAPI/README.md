@@ -89,7 +89,7 @@ O sistema calcula uma pontuação (0-100) baseada em:
 
 ---
 
-## 🛠 Tecnologias
+## - Tecnologias
 
 ### Stack Principal
 - **.NET 8.0** - Framework moderno e de alta performance
@@ -112,7 +112,7 @@ O sistema calcula uma pontuação (0-100) baseada em:
 
 ---
 
-## 🚀 Instalação
+## - Instalação
 
 ### Pré-requisitos
 - [.NET 8.0 SDK](https://dotnet.microsoft.com/download/dotnet/8.0) ou superior
@@ -136,7 +136,7 @@ dotnet restore
 dotnet ef database update
 ```
 
-> 💡 **Nota**: Se o comando `dotnet ef` não estiver disponível, instale com:
+> - **Nota**: Se o comando `dotnet ef` não estiver disponível, instale com:
 > ```bash
 > dotnet tool install --global dotnet-ef
 > ```
@@ -153,7 +153,7 @@ https://localhost:7001/swagger
 
 ---
 
-## ⚙️ Configuração
+## - Configuração
 
 ### appsettings.json
 
@@ -187,7 +187,7 @@ https://localhost:7001/swagger
 
 ---
 
-## 📖 Uso
+## - Uso
 
 ### Acesso à Documentação
 
@@ -232,7 +232,7 @@ SmartLeadAutomationAPI/
 
 ---
 
-## 🔌 API Endpoints
+## - API Endpoints
 
 ### Leads
 
@@ -270,7 +270,7 @@ SmartLeadAutomationAPI/
 
 ---
 
-## 💡 Exemplos de Requisições
+## - Exemplos de Requisições
 
 ### Criar um Lead
 
@@ -397,7 +397,7 @@ curl -X PATCH "https://localhost:7001/api/leads/1/status?newStatus=EmNegociacao"
 
 ---
 
-## 🏗 Arquitetura
+## - Arquitetura
 
 ### Diagrama de Camadas
 
@@ -494,7 +494,7 @@ curl -X PATCH "https://localhost:7001/api/leads/1/status?newStatus=EmNegociacao"
 
 ---
 
-## 🧠 Decisões Técnicas
+## - Decisões Técnicas
 
 ### 1. Por que SQLite?
 
@@ -584,7 +584,7 @@ Baseados em frameworks de lead scoring (HubSpot, Salesforce):
 
 ---
 
-## 🤝 Contribuição
+## - Contribuição
 
 Contribuições são bem-vindas! Siga os passos:
 
@@ -624,17 +624,16 @@ copies or substantial portions of the Software.
 
 ---
 
-## 📞 Suporte
+## - Suporte
 
-- **Documentação**: [https://smartlead.com/docs](https://smartlead.com/docs)
-- **Email**: suporte@smartlead.com
-- **Issues**: [GitHub Issues](https://github.com/seu-usuario/smartlead-automation-api/issues)
+- **Email**: gabrielccavaloti@gmail.com
+
 
 ---
 
 <div align="center">
 
-**Desenvolvido com ❤️ pela SmartLead Team**
+
 
 [⬆ Voltar ao topo](#smartlead-automation-api)
 
