@@ -1,0 +1,284 @@
+### SmartLead Automation API - Test Requests
+### Para usar com REST Client extension no VS Code
+### @baseUrl = https://localhost:7001
+
+### Variáveis
+@baseUrl = https://localhost:7001
+@contentType = application/json
+
+### ============================================
+### HEALTH CHECKS
+### ============================================
+
+### Health Check Geral
+GET {{baseUrl}}/health
+Accept: {{contentType}}
+
+### Readiness Probe (Kubernetes)
+GET {{baseUrl}}/ready
+Accept: {{contentType}}
+
+### Liveness Probe (Kubernetes)
+GET {{baseUrl}}/live
+Accept: {{contentType}}
+
+### ============================================
+### ESTATÍSTICAS
+### ============================================
+
+### Estatísticas Gerais
+GET {{baseUrl}}/api/stats
+Accept: {{contentType}}
+
+### Distribuição por Prioridade
+GET {{baseUrl}}/api/stats/by-priority
+Accept: {{contentType}}
+
+### Distribuição por Origem
+GET {{baseUrl}}/api/stats/by-source
+Accept: {{contentType}}
+
+### Resumo do Dashboard
+GET {{baseUrl}}/api/stats/dashboard
+Accept: {{contentType}}
+
+### Métricas de Conversão
+GET {{baseUrl}}/api/stats/conversion-metrics
+Accept: {{contentType}}
+
+### ============================================
+### CRUD DE LEADS
+### ============================================
+
+### Listar Todos os Leads
+GET {{baseUrl}}/api/leads
+Accept: {{contentType}}
+
+### Listar Leads com Paginação
+GET {{baseUrl}}/api/leads?pageNumber=1&pageSize=10
+Accept: {{contentType}}
+
+### Listar Leads com Filtros (Prioridade Alta)
+GET {{baseUrl}}/api/leads?priority=Alta
+Accept: {{contentType}}
+
+### Listar Leads com Filtros (Origem LinkedIn)
+GET {{baseUrl}}/api/leads?source=LinkedIn
+Accept: {{contentType}}
+
+### Listar Leads com Busca
+GET {{baseUrl}}/api/leads?searchTerm=joão
+Accept: {{contentType}}
+
+### Listar Leads com Múltiplos Filtros
+GET {{baseUrl}}/api/leads?priority=Alta&source=LinkedIn&pageSize=5
+Accept: {{contentType}}
+
+### Listar Leads Incluindo Inativos
+GET {{baseUrl}}/api/leads?includeInactive=true
+Accept: {{contentType}}
+
+### Ordenar Leads por Score (decrescente)
+GET {{baseUrl}}/api/leads?sortBy=score&sortDirection=desc
+Accept: {{contentType}}
+
+### Obter Lead por ID
+GET {{baseUrl}}/api/leads/1
+Accept: {{contentType}}
+
+### Buscar Lead por Email
+GET {{baseUrl}}/api/leads/by-email/joao.silva@empresa.com
+Accept: {{contentType}}
+
+### Verificar se Email Existe
+GET {{baseUrl}}/api/leads/check-email/maria.santos@startup.com
+Accept: {{contentType}}
+
+### ============================================
+### CRIAR LEADS
+### ============================================
+
+### Criar Lead - Prioridade Alta (Diretor + Valor Alto + LinkedIn)
+POST {{baseUrl}}/api/leads
+Content-Type: {{contentType}}
+
+{
+  "name": "Carlos Eduardo Mendes",
+  "email": "carlos.mendes@techcorp.com",
+  "phone": "(11) 99999-8888",
+  "company": "TechCorp Brasil",
+  "jobTitle": "Diretor de Operações",
+  "source": "LinkedIn",
+  "estimatedValue": 150000,
+  "marketingConsent": true,
+  "notes": "Interessado em solução enterprise. Orçamento aprovado para Q1."
+}
+
+### Criar Lead - Prioridade Média (Gerente + Valor Médio)
+POST {{baseUrl}}/api/leads
+Content-Type: {{contentType}}
+
+{
+  "name": "Fernanda Lima",
+  "email": "fernanda.lima@mediacompany.com",
+  "phone": "(21) 98888-7777",
+  "company": "Media Company Ltda",
+  "jobTitle": "Gerente de Marketing",
+  "source": "Website",
+  "estimatedValue": 25000,
+  "marketingConsent": true,
+  "notes": "Buscando automação de campanhas de email."
+}
+
+### Criar Lead - Prioridade Baixa (Sem dados completos)
+POST {{baseUrl}}/api/leads
+Content-Type: {{contentType}}
+
+{
+  "name": "Anônimo Teste",
+  "email": "anonimo@teste.com",
+  "source": "Facebook",
+  "estimatedValue": 1000
+}
+
+### Criar Lead - Indicação (Deve ter bônus de prioridade)
+POST {{baseUrl}}/api/leads
+Content-Type: {{contentType}}
+
+{
+  "name": "Ricardo Souza",
+  "email": "ricardo.souza@indicado.com",
+  "phone": "(31) 97777-6666",
+  "company": "Indicado Empresas",
+  "jobTitle": "CEO",
+  "source": "Indicacao",
+  "estimatedValue": 80000,
+  "marketingConsent": true,
+  "notes": "Indicação do cliente atual João Silva."
+}
+
+### ============================================
+### ATUALIZAR LEADS
+### ============================================
+
+### Atualizar Lead (ID: 2)
+PUT {{baseUrl}}/api/leads/2
+Content-Type: {{contentType}}
+
+{
+  "name": "Maria Santos Atualizada",
+  "phone": "(21) 97654-3210",
+  "company": "Startup Inovadora LTDA",
+  "jobTitle": "CEO e Fundadora",
+  "status": "Qualificado",
+  "source": "Website",
+  "estimatedValue": 25000,
+  "conversionProbability": 60,
+  "marketingConsent": true,
+  "hasResponded": true,
+  "notes": "Lead qualificado após reunião inicial. Muito interessada."
+}
+
+### ============================================
+### OPERAÇÕES DE STATUS
+### ============================================
+
+### Atualizar Status para Em Qualificação
+PATCH {{baseUrl}}/api/leads/3/status?newStatus=EmQualificacao
+Accept: {{contentType}}
+
+### Atualizar Status para Qualificado
+PATCH {{baseUrl}}/api/leads/3/status?newStatus=Qualificado
+Accept: {{contentType}}
+
+### Atualizar Status para Em Negociação
+PATCH {{baseUrl}}/api/leads/1/status?newStatus=EmNegociacao
+Accept: {{contentType}}
+
+### Atualizar Status para Convertido
+PATCH {{baseUrl}}/api/leads/1/status?newStatus=Convertido
+Accept: {{contentType}}
+
+### Marcar Lead como Respondido
+POST {{baseUrl}}/api/leads/2/mark-responded
+Accept: {{contentType}}
+
+### Recalcular Prioridade
+POST {{baseUrl}}/api/leads/2/recalculate-priority
+Accept: {{contentType}}
+
+### ============================================
+### EXCLUIR E RESTAURAR
+### ============================================
+
+### Remover Lead (Soft Delete)
+DELETE {{baseUrl}}/api/leads/3
+Accept: {{contentType}}
+
+### Restaurar Lead
+POST {{baseUrl}}/api/leads/3/restore
+Accept: {{contentType}}
+
+### ============================================
+### TESTES DE VALIDAÇÃO
+### ============================================
+
+### Tentar criar lead com email duplicado (deve falhar)
+POST {{baseUrl}}/api/leads
+Content-Type: {{contentType}}
+
+{
+  "name": "Duplicado Teste",
+  "email": "joao.silva@empresa.com",
+  "source": "Website"
+}
+
+### Tentar criar lead com email inválido (deve falhar)
+POST {{baseUrl}}/api/leads
+Content-Type: {{contentType}}
+
+{
+  "name": "Email Inválido",
+  "email": "email-invalido",
+  "source": "Website"
+}
+
+### Tentar criar lead sem nome (deve falhar)
+POST {{baseUrl}}/api/leads
+Content-Type: {{contentType}}
+
+{
+  "name": "",
+  "email": "semnome@teste.com",
+  "source": "Website"
+}
+
+### ============================================
+### CONSULTAS AVANÇADAS
+### ============================================
+
+### Leads com Valor Estimado Alto (> 50000)
+GET {{baseUrl}}/api/leads?minValue=50000
+Accept: {{contentType}}
+
+### Leads com Consentimento de Marketing
+GET {{baseUrl}}/api/leads?hasMarketingConsent=true
+Accept: {{contentType}}
+
+### Leads que Responderam
+GET {{baseUrl}}/api/leads?hasResponded=true
+Accept: {{contentType}}
+
+### Leads Criados nos Últimos 7 Dias
+GET {{baseUrl}}/api/leads?createdFrom=2024-01-15
+Accept: {{contentType}}
+
+### ============================================
+### SWAGGER
+### ============================================
+
+### Acessar Swagger UI
+GET {{baseUrl}}/swagger
+
+### Acessar Swagger JSON
+GET {{baseUrl}}/swagger/v1/swagger.json

@@ -1,0 +1,8 @@
+<Project>
+  <PropertyGroup>
+    <!-- Gera arquivo XML de documentação para o Swagger -->
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <NoWarn>$(NoWarn);1591</NoWarn>
+    <!-- 1591: ignora avisos de membros não documentados -->
+  </PropertyGroup>
+</Project>
